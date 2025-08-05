@@ -11,7 +11,7 @@
 	<%!
 		String id;
 		String pw;
-		// 쿠키는 내장객체가 아니라 선언해줘야 한다 (?)
+		// 쿠키는 내장객체가 아니라 직접 선언해서 사용해야함.
 	%>
 	<% 
 		request.setCharacterEncoding("UTF-8");
