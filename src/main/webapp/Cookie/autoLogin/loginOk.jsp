@@ -24,12 +24,19 @@
 		if (id.equals("admin") && pw.equals("1234")) {
 			if (rememberId != null) { // 체크박스에 체크가 된 상태라면
 				Cookie cookie = new Cookie("saveId", id); // 쿠키 생성(이름, 가져온 값)
+				Cookie cookiePw = new Cookie("savePw", pw); // 쿠키에 비밀번호도 저장 예쩡
 				cookie.setMaxAge(60*3); // (60*3)분동안 쿠키 유지
-				response.addCookie(cookie); // 생성한 쿠키를 클라이언트에게 전달	
+				cookiePw.setMaxAge(60*3);
+				response.addCookie(cookie); // 생성한 쿠키를 클라이언트에게 전달
+				response.addCookie(cookiePw);
 			} else { // 체크박스에 체크가 안 된 상태라면 쿠키 삭제
 				Cookie cookie = new Cookie("saveId", id); 
+				Cookie cookiePw = new Cookie("savePw", id); // 쿠키에 비밀번호 저장
+
 				cookie.setMaxAge(0); // 유효시간 0으로 만들면서 쿠키 삭제
+				cookiePw.setMaxAge(0);
 				response.addCookie(cookie);
+				response.addCookie(cookiePw);
 			}
 			session.setAttribute("user", id); // 세션에 값 저장
 			response.sendRedirect("welcome.jsp"); 
